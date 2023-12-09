@@ -6,5 +6,7 @@ The Idea:
 Current State:
     - concept work
 
+Only use this with people you trust, it will be posible to see the IP address of erveryone connected to the server
+
 ## Ref:
  - https://en.wikipedia.org/wiki/Hole_punching_(networking)
