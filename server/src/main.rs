@@ -1,10 +1,18 @@
-struct Room {
-    connect_to: String,
-    secret: String,
-}
-
+use serde::{Serialize, Deserialize};
 use tokio::net::UdpSocket;
 use std::io;
+
+#[derive(Debug, Serialize, Deserialize)]
+struct ServerClient<'a> {
+    ip: &'a str,
+    client: Client<'a>
+}
+#[derive(Debug, Serialize, Deserialize)]
+struct Client<'a> {
+    secret: &'a str,
+    connect_to: &'a str,
+}
+
 
 #[tokio::main]
 async fn main() -> io::Result<()> {
@@ -13,8 +21,15 @@ async fn main() -> io::Result<()> {
     loop {
         let (len, addr) = sock.recv_from(&mut buf).await?;
         println!("{:?} bytes received from {:?}", len, addr);
+        println!("--- Message ---");
+        
+        let client: Client = postcard::from_bytes(&buf[..len]).unwrap();
 
-        let len = sock.send_to(&buf[..len], addr).await?;
-        println!("{:?} bytes sent", len);
+        println!("{client:#?}");
+        println!("--- End ---");
+        
+
+        /*let len = sock.send_to(&buf[..len], addr).await?;
+        println!("{:?} bytes sent", len);*/
     }
 }
