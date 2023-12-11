@@ -1,0 +1,12 @@
+[workspace]
+members = ["shared_lib","relay-server","test-client"]
+resolver = "2"
+
+[workspace.dependencies]
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+postcard = { version = "1.0.0", features = ["alloc"] }
+
+[workspace.package]
+version = "0.0.1"
+authors = ["Cron3x"]
