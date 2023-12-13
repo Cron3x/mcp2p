@@ -1,4 +1,4 @@
-# mcp2p (Astat) 
+# mcp2p
 
 The Idea:
     Building a Mod wich can open a lanworld to the _internet_ by using Peer-to-Peer and a method called hole punching.
